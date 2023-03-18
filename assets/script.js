@@ -41,14 +41,25 @@ arrowRight.addEventListener("click", function () {
 // Pour comprendre comment ajouter les points, vous pouvez vous référer au fichier CSS du site, il vous donnera les informations nécessaires sur les classes à utiliser pour les différents types de points. 
 
 
-
-
 for (let i = 0; i < slides.length; i++) {
-	const slide = slides[i];
-	// element du DOM qui genere les slides
-	const sectionFiches = document.querySelector(".banner");
-	// balise img pour le slide
+	const slideArborescence = slides[i].image;
+	console.log(slideArborescence)
+
+
+	const slideTexte = slides[i].tagLine;
+	console.log(slideTexte)
+
+
+	// Selection d'ou vas l'img
+	const sectionSlide = document.querySelector(".banner");
+	// Crea de la balise img
 	const imageElement = document.createElement("img");
-    imageElement.src = slides[i].image;
+	// Ajout d'une classe
+	imageElement.classList.add("banner-img")
+	// Ajout du src de l'img
+	imageElement.src = slideArborescence;
+	// Indiquer ou vas l'img
+	sectionSlide.appendChild(imageElement);
 }
+
 

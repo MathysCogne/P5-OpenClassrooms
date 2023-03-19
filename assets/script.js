@@ -16,9 +16,7 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-// Lancer a la géneration de la page
-initSlide();
-initDots()
+
 // variables: Selection banniere / Fleches / Index banniere
 const divSlide = document.querySelector(".banner");
 const divDots = document.querySelector(".dots");
@@ -123,3 +121,7 @@ function initDots(){
 			divDots.appendChild(dots);
 		};		
 }};
+
+// Géneration de la page:: slide dots 
+initSlide();
+initDots()

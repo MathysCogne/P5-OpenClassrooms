@@ -17,54 +17,140 @@ const slides = [
 	}
 ]
 
+// variables: Selection banniere / Fleches / Index banniere
+const divSlide = document.querySelector(".banner");
+const arrowSlide = document.querySelectorAll(".arrow");
 let indexSlide = 0;
-let moveSlide = 0;
 
-const arrowLeft = document.querySelector(".arrow_left")
-const arrowRight = document.querySelector(".arrow_right")
-
-arrowLeft.addEventListener("click", function () {
-	// console.log("arrowLeft");
-	slide(-1);
-});
-
-arrowRight.addEventListener("click", function () {
-	// console.log("arrowRight");
-	slide(+1)
-});
-
-function slide(n){
-	moveSlide=n;
-	console.log("Prev Slide");
-	console.log(moveSlide);
-	changeSlide();
+// Reset de la banniere
+function resetDivSlide() {
+	divSlide.innerHTML = '';
 }
 
+// Init du slider
+function startSlide() {
+	resetDivSlide();
+	// Génération de l'image
+	const img = document.createElement('img');
+	img.src = slides[0].image;
+	img.classList.add('banner-img');
+	divSlide.appendChild(img);
 
-changeSlide()
-
-function changeSlide(){
-	if (indexSlide >= slides.length -1){
-		indexSlide = 0;
-		console.log("call fonction FIN INDEX SLIDE" + indexSlide);
-	}
-
-	if (indexSlide < 0){
-		indexSlide = slides.length + -1;
-		console.log("call fonction DEBUT INDEX SLIDE" + indexSlide);
-	}
-
-
-	if (moveSlide === 1){
-		indexSlide++;
-		console.log("call fonction +1" +indexSlide);
-	}
-
-	else if (moveSlide === -1){
-		indexSlide--;
-		console.log("call fonction -1" + indexSlide);
-	}
+	// Génération du texte
+	const description = document.createElement('p');
+	description.innerHTML = slides[0].tagLine;
+	divSlide.appendChild(description);
 }
+
+// slider gauche
+function slideLeft() {
+	resetDivSlide();
+	const img = document.createElement('img');
+	img.src = slides[indexSlide - 1].image;
+	img.classList.add('banner-img');
+	divSlide.appendChild(img);
+
+	const description = document.createElement('p');
+	description.innerHTML = slides[indexSlide - 1].tagLine;
+	divSlide.appendChild(description);
+
+	indexSlide--;
+}
+
+// slider droite
+function slideRight() {
+	resetDivSlide();
+	const img = document.createElement('img');
+	img.src = slides[indexSlide + 1].image;
+	img.classList.add('banner-img');
+	divSlide.appendChild(img);
+
+	const description = document.createElement('p');
+	description.innerHTML = slides[indexSlide + 1].tagLine;
+	divSlide.appendChild(description);
+
+	indexSlide++;
+}
+
+arrowSlide.forEach(button => {
+	button.addEventListener('click', () => {
+
+	  if (button.classList.contains('arrow_left')) {
+		// Première diapositive  > dernière
+		if (indexSlide === 0) {
+			indexSlide = slides.length;
+		}
+		slideLeft();
+
+		
+	  } else {
+		// Dernière diapositive > première
+		if (indexSlide === slides.length - 1) {
+			indexSlide = -1;
+		}
+		slideRight();
+	  }
+	});
+  });
+
+// Lancer a la géneration de la page
+startSlide();
+
+
+
+
+
+// arrowLeft.addEventListener("click", function () {
+// 	// console.log("arrowLeft");
+// 	slide(-1);
+// });
+
+// arrowRight.addEventListener("click", function () {
+// 	// console.log("arrowRight");
+// 	slide(+1)
+// });
+
+// function slide(n){
+// 	moveSlide=n;
+// 	console.log("Prev Slide");
+// 	console.log(moveSlide);
+
+// 	const slideNumbers = slides.length -1
+
+// 	if (indexSlide < 0){
+// 		indexSlide = slideNumbers;
+// 		console.log("call fonction DEBUT INDEX SLIDE" + indexSlide);
+// 		moveSlide(indexSlide)
+// 	}
+// 	if (indexSlide >= slideNumbers){
+// 		indexSlide = -1;
+// 		console.log("call fonction FIN INDEX SLIDE" + indexSlide);
+// 		moveSlide(indexSlide)
+// 	}
+
+// 	changeSlide();
+// }
+
+
+// changeSlide()
+
+// function changeSlide(){
+// 	// console.log(">>>>>>>> la slide " +indexSlide)
+
+// }
+
+// function TESTmoveSlide(n){
+
+// 	if (n === 1){
+// 		indexSlide++;
+// 		console.log(">>>>>>>> la slide " +indexSlide)
+// 	}
+
+// 	if (n === -1){
+// 		indexSlide--;
+// 		console.log(">>>>>>>> la slide " +indexSlide)
+// 	}
+// }
 	
 
 // Maintenant que nous écoutons le clic sur les flèches, passons à un autre élément de l’interface : les bullets points. Ils permettront à l’utilisateur de savoir sur quelle slide il se trouve.

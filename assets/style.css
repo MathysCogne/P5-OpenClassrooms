@@ -101,7 +101,7 @@ header {
 	background-color: var(--secondary-color);
 }
 
-#banner {
+#sec__banner {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -109,6 +109,14 @@ header {
 	width: 100%;
 	min-height: 470px;
 	position: relative;
+}
+.banner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 470px;
+	position: absolute;
 }
 .banner-img {
 	position: absolute;
@@ -148,7 +156,7 @@ header {
 	background-color: #fff;
 }
 /* Fin du code CSS pour le carousel */
-#banner p {
+#sec__banner p {
 	font-family: 'Roboto Slab', sans-serif;
 	font-weight: 900;
 	font-size: 50px;
@@ -157,7 +165,7 @@ header {
 	text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 	text-align: center;
 }
-#banner span {
+#sec__banner span {
 	display: block;
 	font-weight: 400;
 	font-size: 30px;

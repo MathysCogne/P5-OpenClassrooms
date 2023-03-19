@@ -17,19 +17,55 @@ const slides = [
 	}
 ]
 
-
+let indexSlide = 0;
+let moveSlide = 0;
 
 const arrowLeft = document.querySelector(".arrow_left")
 const arrowRight = document.querySelector(".arrow_right")
 
 arrowLeft.addEventListener("click", function () {
-	console.log("arrowLeft");
+	// console.log("arrowLeft");
+	slide(-1);
 });
+
 arrowRight.addEventListener("click", function () {
-	console.log("arrowRight");
+	// console.log("arrowRight");
+	slide(+1)
 });
 
+function slide(n){
+	moveSlide=n;
+	console.log("Prev Slide");
+	console.log(moveSlide);
+	changeSlide();
+}
 
+
+changeSlide()
+
+function changeSlide(){
+	if (indexSlide >= slides.length -1){
+		indexSlide = 0;
+		console.log("call fonction FIN INDEX SLIDE" + indexSlide);
+	}
+
+	if (indexSlide < 0){
+		indexSlide = slides.length + -1;
+		console.log("call fonction DEBUT INDEX SLIDE" + indexSlide);
+	}
+
+
+	if (moveSlide === 1){
+		indexSlide++;
+		console.log("call fonction +1" +indexSlide);
+	}
+
+	else if (moveSlide === -1){
+		indexSlide--;
+		console.log("call fonction -1" + indexSlide);
+	}
+}
+	
 
 // Maintenant que nous écoutons le clic sur les flèches, passons à un autre élément de l’interface : les bullets points. Ils permettront à l’utilisateur de savoir sur quelle slide il se trouve.
 
@@ -41,25 +77,35 @@ arrowRight.addEventListener("click", function () {
 // Pour comprendre comment ajouter les points, vous pouvez vous référer au fichier CSS du site, il vous donnera les informations nécessaires sur les classes à utiliser pour les différents types de points. 
 
 
-for (let i = 0; i < slides.length; i++) {
-	const slideArborescence = slides[i].image;
-	console.log(slideArborescence)
+// for (let i = 0; i < slides.length; i++) {
+// 	const slideArborescence + i = slides[i].image;
+// 	console.log(slideArborescence)
 
 
-	const slideTexte = slides[i].tagLine;
-	console.log(slideTexte)
+// 	const slideTexte = slides[i].tagLine;
+// 	console.log(slideTexte)
 
 
-	// Selection d'ou vas l'img
-	const sectionSlide = document.querySelector(".banner");
-	// Crea de la balise img
-	const imageElement = document.createElement("img");
-	// Ajout d'une classe
-	imageElement.classList.add("banner-img")
-	// Ajout du src de l'img
-	imageElement.src = slideArborescence;
-	// Indiquer ou vas l'img
-	sectionSlide.appendChild(imageElement);
-}
+	// // Selection d'ou vas l'img
+	// const sectionSlide = document.querySelector(".banner");
+	// // Crea de la balise img
+	// const imageElement = document.createElement("img");
+	// // Ajout d'une classe
+	// imageElement.classList.add("banner-img")
+	// // Ajout du src de l'img
+	// imageElement.src = slideArborescence;
+	// // Indiquer ou vas l'img
+	// sectionSlide.appendChild(imageElement);
 
 
+// }
+
+
+// arrowRight.addEventListener("click", function () {
+// 	console.log("==== Right TEST ====");
+// 	const sectionSlide = document.querySelector(".banner");
+// 	const imageElement = document.createElement("img");
+// 	imageElement.classList.add("banner-img")
+// 	imageElement.src = slideArborescence;
+// 	sectionSlide.appendChild(imageElement);
+// });

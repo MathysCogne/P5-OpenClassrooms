@@ -16,7 +16,9 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-
+// Géneration de la page:: slide dots 
+initSlide();
+initDots()
 // variables: Selection banniere / Fleches / Index banniere
 const divSlide = document.querySelector(".banner");
 const divDots = document.querySelector(".dots");
@@ -84,6 +86,7 @@ function slideRight() {
 	console.log("DEBUG: slide >>> " + indexSlide);
 }
 
+// Gestion des flèches // Boucle infinie
 arrowSlide.forEach(button => {
 	button.addEventListener("click", () => {
 
@@ -104,6 +107,7 @@ arrowSlide.forEach(button => {
 	});
   });
 
+// Gestion des dots
 function initDots(){
 	divDots.innerHTML = "";
 	// Génération des dots
@@ -121,7 +125,3 @@ function initDots(){
 			divDots.appendChild(dots);
 		};		
 }};
-
-// Géneration de la page:: slide dots 
-initSlide();
-initDots()
